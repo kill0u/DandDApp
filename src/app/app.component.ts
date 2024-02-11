@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { CommonModule } from "@angular/common";
 
@@ -9,6 +9,10 @@ import { CommonModule } from "@angular/common";
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor() {}
+  ngOnInit(): void {
+    throw new Error("Method not implemented.");
+  }
   title = "DandDApp";
 }

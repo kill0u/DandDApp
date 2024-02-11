@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { MonsterData, Monster } from "../../models/monster";
 import { MonsterService } from "../monster.service";
 import { CommonModule } from "@angular/common";
+import { Apollo } from "apollo-angular";
+import { GET_MONSTERS } from "../../graphql.operations";
 
 @Component({
   selector: "app-monster",
@@ -13,18 +15,29 @@ import { CommonModule } from "@angular/common";
 export class MonsterComponent implements OnInit {
   monsters: Monster[] = [];
 
-  constructor(private monsterService: MonsterService) {}
+  constructor(private apollo: Apollo) {}
 
-  ngOnInit(): void {
-    this.fetchMonsters();
+  ngOnInit() {
+    this.getMonsters();
   }
 
-  fetchMonsters(): void {
+  getMonsters() {
+    this.apollo
+      .watchQuery({
+        query: GET_MONSTERS,
+      })
+      .valueChanges.subscribe(({ data, error }: any) => {
+        console.log(data);
+        this.monsters = data.monsters;
+      });
+  }
+
+  /*fetchMonsters(): void {
     this.monsterService.getMonsters().subscribe((data: MonsterData) => {
       this.monsters = data.monsters;
       console.log("data : ", data.monsters);
     });
-  }
+  }*/
 
   getArmorClass(monster: Monster): string {
     return monster.armor_class.length > 0
