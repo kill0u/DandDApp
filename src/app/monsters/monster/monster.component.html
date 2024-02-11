@@ -1,0 +1,20 @@
+<div *ngFor="let monster of monsters">
+  <h2>{{ monster.name }}</h2>
+  <p>Index: {{ monster.index }}</p>
+  <p>Armor Class:</p>
+  <div *ngFor="let armor of monster.armor_class">
+    <p>Type: {{ armor.type }}</p>
+    <p>Value: {{ armor.value }}</p>
+  </div>
+  <p>Description: {{ monster.desc }}</p>
+  <p>Alignment: {{ monster.alignment }}</p>
+  <p>Charisma: {{ monster.charisma }}</p>
+  <p>Immune conditions: {{ monster.condition_immunities }}</p>
+  <p>Proficiency bonus:{{ monster.proficiency_bonus }}</p>
+  <p>Challenge rating: {{ monster.challenge_rating }}</p>
+  <p>Constitution: {{ monster.constitution }}</p>
+  <p>Immunities: {{ monster.damage_immunities }}</p>
+  <p>Resistances: {{ monster.damage_resistances }}</p>
+  <p>Vulnerabilities: {{ monster.damage_vulnerabilities }}</p>
+  <p>Dexterity: {{ monster.dexterity }}</p>
+</div>
