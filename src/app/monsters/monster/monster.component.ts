@@ -13,9 +13,22 @@ import { CommonModule } from "@angular/common";
 export class MonsterComponent implements OnInit {
   monsters: Monster[] = [];
 
-  constructor(readonly monsterService: MonsterService) {}
+  constructor(private monsterService: MonsterService) {}
 
   ngOnInit(): void {
-    this.monsters = this.monsterService.monsters;
+    this.fetchMonsters();
+  }
+
+  fetchMonsters(): void {
+    this.monsterService.getMonsters().subscribe((data: MonsterData) => {
+      this.monsters = data.monsters;
+      console.log("data : ", data.monsters);
+    });
+  }
+
+  getArmorClass(monster: Monster): string {
+    return monster.armor_class.length > 0
+      ? monster.armor_class[0].value.toString()
+      : "Unknown";
   }
 }

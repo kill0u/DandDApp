@@ -1,11 +1,7 @@
 <div *ngFor="let monster of monsters">
   <h2>{{ monster.name }}</h2>
   <p>Index: {{ monster.index }}</p>
-  <p>Armor Class:</p>
-  <div *ngFor="let armor of monster.armor_class">
-    <p>Type: {{ armor.type }}</p>
-    <p>Value: {{ armor.value }}</p>
-  </div>
+  <p>Armor Class: {{ getArmorClass(monster) }}</p>
   <p>Description: {{ monster.desc }}</p>
   <p>Alignment: {{ monster.alignment }}</p>
   <p>Charisma: {{ monster.charisma }}</p>
